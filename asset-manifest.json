@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/wine-shop/static/css/main.197763f3.chunk.css",
-    "main.js": "/wine-shop/static/js/main.60b11a53.chunk.js",
-    "main.js.map": "/wine-shop/static/js/main.60b11a53.chunk.js.map",
+    "main.css": "/wine-shop/static/css/main.e3aeddfc.chunk.css",
+    "main.js": "/wine-shop/static/js/main.32f879ac.chunk.js",
+    "main.js.map": "/wine-shop/static/js/main.32f879ac.chunk.js.map",
     "runtime-main.js": "/wine-shop/static/js/runtime-main.f633f3bd.js",
     "runtime-main.js.map": "/wine-shop/static/js/runtime-main.f633f3bd.js.map",
     "static/js/2.8c52e47b.chunk.js": "/wine-shop/static/js/2.8c52e47b.chunk.js",
     "static/js/2.8c52e47b.chunk.js.map": "/wine-shop/static/js/2.8c52e47b.chunk.js.map",
     "index.html": "/wine-shop/index.html",
-    "static/css/main.197763f3.chunk.css.map": "/wine-shop/static/css/main.197763f3.chunk.css.map",
+    "static/css/main.e3aeddfc.chunk.css.map": "/wine-shop/static/css/main.e3aeddfc.chunk.css.map",
     "static/js/2.8c52e47b.chunk.js.LICENSE.txt": "/wine-shop/static/js/2.8c52e47b.chunk.js.LICENSE.txt",
     "static/media/home-page.css": "/wine-shop/static/media/image3-3.17865cd7.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.f633f3bd.js",
     "static/js/2.8c52e47b.chunk.js",
-    "static/css/main.197763f3.chunk.css",
-    "static/js/main.60b11a53.chunk.js"
+    "static/css/main.e3aeddfc.chunk.css",
+    "static/js/main.32f879ac.chunk.js"
   ]
 }
