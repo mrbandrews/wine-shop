@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/wine-shop/static/css/main.197763f3.chunk.css",
-    "main.js": "/wine-shop/static/js/main.6b4791f2.chunk.js",
-    "main.js.map": "/wine-shop/static/js/main.6b4791f2.chunk.js.map",
+    "main.js": "/wine-shop/static/js/main.689d6507.chunk.js",
+    "main.js.map": "/wine-shop/static/js/main.689d6507.chunk.js.map",
     "runtime-main.js": "/wine-shop/static/js/runtime-main.f633f3bd.js",
     "runtime-main.js.map": "/wine-shop/static/js/runtime-main.f633f3bd.js.map",
     "static/js/2.8c52e47b.chunk.js": "/wine-shop/static/js/2.8c52e47b.chunk.js",
@@ -12,13 +12,12 @@
     "static/js/2.8c52e47b.chunk.js.LICENSE.txt": "/wine-shop/static/js/2.8c52e47b.chunk.js.LICENSE.txt",
     "static/media/home-page.css": "/wine-shop/static/media/image3-3.17865cd7.jpg",
     "static/media/bogle.d37b4356.webp": "/wine-shop/static/media/bogle.d37b4356.webp",
-    "static/media/josh.97e8871e.webp": "/wine-shop/static/media/josh.97e8871e.webp",
     "static/media/joshmerlot.97e8871e.webp": "/wine-shop/static/media/joshmerlot.97e8871e.webp"
   },
   "entrypoints": [
     "static/js/runtime-main.f633f3bd.js",
     "static/js/2.8c52e47b.chunk.js",
     "static/css/main.197763f3.chunk.css",
-    "static/js/main.6b4791f2.chunk.js"
+    "static/js/main.689d6507.chunk.js"
   ]
 }
