@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/wine-shop/static/css/main.197763f3.chunk.css",
-    "main.js": "/wine-shop/static/js/main.57ac5877.chunk.js",
-    "main.js.map": "/wine-shop/static/js/main.57ac5877.chunk.js.map",
+    "main.js": "/wine-shop/static/js/main.427d9ca6.chunk.js",
+    "main.js.map": "/wine-shop/static/js/main.427d9ca6.chunk.js.map",
     "runtime-main.js": "/wine-shop/static/js/runtime-main.f633f3bd.js",
     "runtime-main.js.map": "/wine-shop/static/js/runtime-main.f633f3bd.js.map",
     "static/js/2.8c52e47b.chunk.js": "/wine-shop/static/js/2.8c52e47b.chunk.js",
@@ -11,14 +11,17 @@
     "static/css/main.197763f3.chunk.css.map": "/wine-shop/static/css/main.197763f3.chunk.css.map",
     "static/js/2.8c52e47b.chunk.js.LICENSE.txt": "/wine-shop/static/js/2.8c52e47b.chunk.js.LICENSE.txt",
     "static/media/home-page.css": "/wine-shop/static/media/image3-3.17865cd7.jpg",
-    "static/media/bogle.d37b4356.webp": "/wine-shop/static/media/bogle.d37b4356.webp",
-    "static/media/josh.97e8871e.webp": "/wine-shop/static/media/josh.97e8871e.webp",
-    "static/media/joshmerlot.97e8871e.webp": "/wine-shop/static/media/joshmerlot.97e8871e.webp"
+    "static/media/bogle-merlot.d37b4356.webp": "/wine-shop/static/media/bogle-merlot.d37b4356.webp",
+    "static/media/california-pinot-noir.1fb8971f.webp": "/wine-shop/static/media/california-pinot-noir.1fb8971f.webp",
+    "static/media/josh-merlot.97e8871e.webp": "/wine-shop/static/media/josh-merlot.97e8871e.webp",
+    "static/media/oregon-pinot-noir.b8b4be22.webp": "/wine-shop/static/media/oregon-pinot-noir.b8b4be22.webp",
+    "static/media/radius-merlot.71ffc1c3.webp": "/wine-shop/static/media/radius-merlot.71ffc1c3.webp",
+    "static/media/stags-leap-merlot.147885ea.webp": "/wine-shop/static/media/stags-leap-merlot.147885ea.webp"
   },
   "entrypoints": [
     "static/js/runtime-main.f633f3bd.js",
     "static/js/2.8c52e47b.chunk.js",
     "static/css/main.197763f3.chunk.css",
-    "static/js/main.57ac5877.chunk.js"
+    "static/js/main.427d9ca6.chunk.js"
   ]
 }
