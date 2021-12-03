@@ -8,7 +8,7 @@ import './index.css';
 ReactDOM.render(
     <ProductsContextProvider>
       <CartContextProvider>
-        <App />
+        <App basename="/wine-shop" />
       </CartContextProvider>
     </ProductsContextProvider>,
   document.getElementById('root')

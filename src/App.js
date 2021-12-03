@@ -5,10 +5,11 @@ import DetailPage from './components/pages/detail-page/detail-page';
 import CartPage from './components/pages/cart-page/cart-page';
 import NotFound from './components/shared/not-found';
 
-function App() {
+function App( {basename} ) {
+
   return (
     <div className="app">
-      <BrowserRouter basename="/wine-shop">
+      <BrowserRouter basename={basename}>
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route path='/product/:id' component={DetailPage} />
