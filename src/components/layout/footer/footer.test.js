@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
-import App from './App';
+import Footer  from './footer';
 
 it('renders without crashing', () => {
-    render(<App />);
+    render(<Footer />);
 });
