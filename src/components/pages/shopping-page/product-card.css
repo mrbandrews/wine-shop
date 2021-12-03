@@ -1,0 +1,52 @@
+.product-card {
+  padding: 2%;
+  margin-left: 1rem 0;
+  height: fit-content;
+}
+
+.product-image img {
+  max-width: 100%;
+  cursor: pointer;
+}
+
+.product-info {
+  text-align: left;
+  margin-top: 20px;
+}
+.product-name {
+  font-size: 1.0em;
+  font-weight: bold;
+}
+
+.product-size, .product-rating, .product-pickup, .product-delivery {
+  font-size: 0.8em;
+}
+
+.product-shipping {
+  font-size: 0.8em;
+  margin-bottom: 10px;
+}
+.green {
+  color: green;
+}
+
+.product-price {
+  margin-top: 10px;
+  margin-bottom: 20px; 
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.add-cart-button {
+  width: 100%;
+  height: 34px;
+  background-color: rgb(9, 107, 94);  
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.add-cart-button:hover {
+  background-color: black;
+}

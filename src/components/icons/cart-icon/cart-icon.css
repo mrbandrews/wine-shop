@@ -1,0 +1,33 @@
+.cart-container {
+    position: relative;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.cart-img {
+    width: 40px;
+    padding-top: 10px;
+    padding-right: 20px;
+}
+
+.cart-count {
+    position: absolute;
+    top: 5px;
+    right: 16px;
+    padding: 0px 5px;
+    border-radius: 10px;
+    background-color: rgb(204, 38, 38);
+    color: white;
+    font-size: 0.9em;
+}
+
+@media screen and (max-width: 600px) {
+    .cart-container {
+        margin-left: 10px;
+    }
+    .cart-img {
+        width: 30px;
+        padding-top: 5px;
+     }
+}
+

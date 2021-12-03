@@ -1,0 +1,181 @@
+.top-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    height: 80px;
+}
+
+.logo-wrapper {
+    display: none;
+}
+
+.search-wrapper {
+    flex-grow: 2;
+    position: relative;
+    height: 60%;
+    display: flex;
+    align-items: center;
+    padding-right: 5px;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+}
+
+.location-wrapper {
+    display: none;
+}
+
+
+@media screen and (min-width: 1024px) {
+
+    .logo-wrapper {
+        display: inline-block;
+        margin-right: 20px;
+    }
+
+    .search-wrapper {
+        min-width: 350px;
+    }
+
+    .location-wrapper {
+        display: inline-block;
+        min-width: 200px;
+        height: 60%;
+        margin-left: 40px;
+    }
+}
+
+.logo {
+    content: url('./images/tw-logo.png');
+    width: 200px;
+    cursor: pointer;
+}
+ 
+.search-icon {
+    position: absolute;
+    left: 6px;
+    width: 16px;
+}
+
+.search-box {
+    border: none;
+    height: 80%;
+    width: 100%;
+    padding: 2px 2px 2px 40px;
+    font-size: 0.95rem;
+ }
+  
+.search-button {
+    background-color: rgb(9, 107, 94);
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+    height: 80%;
+    cursor: pointer;
+}
+
+.location-top {
+    font-size: 0.8rem;
+}
+.location-bottom {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+
+/* on desktop, second-bar is a menu bar. */
+/* on mobile, it's just a location box. */
+
+.second-bar-mobile-container {
+    display: block;
+    border: 1px solid lightgrey;  
+    padding-left: 16px;
+}
+  
+.second-bar-wide-container {
+    display: none;
+}
+  
+.location-top {
+    font-size: 0.8rem;
+}
+
+.location-bottom {
+    font-size: 1.1rem;
+    font-weight: bold;
+}  
+
+  
+@media screen and (min-width: 1024px) {
+  
+    .second-bar-mobile-container {
+      display: none;
+    }
+      
+    .second-bar-wide-container {
+      display: block;
+    }
+  
+    .drop-container {
+      font-family: Arial;
+      height: 60px;
+      position: relative;
+      display: inline-block;
+      margin-top: 16px;
+    }  
+  
+    .drop-btn {
+      background-color: white;
+      color: black;
+      font-size: 1.4rem;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      margin-right: 16px;
+    }
+    
+    /* dropdown content (hidden by default) */
+    .drop-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 400px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      columns: auto 2;
+    }
+    
+    /* links inside the dropdown */
+    .drop-content a {
+      color: black;
+      padding: 6px 8px 6px 18px;
+      text-decoration: none;
+      display: block;
+      font-size: 14px;
+    }
+    
+    .drop-content .padleft {
+      padding-left: 20px;
+    }
+    
+    .drop-content .category {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    
+    .drop-content a:hover {
+      background-color: #f1f1f1
+    }
+    
+    /* show the dropdown menu on hover */
+    .drop-container:hover .drop-content {
+      display: block;
+    }
+    
+    .drop-container:hover .drop-btn {
+      color: forestgreen;
+    }
+      
+}
+    
+  
