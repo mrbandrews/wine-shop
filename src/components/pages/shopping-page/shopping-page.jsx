@@ -257,10 +257,16 @@ const ShoppingPage = (props) => {
 
 
     return (
-      <Layout>     
+      <Layout>
 
-        <div className="shopping-title">
-          {displayName}
+        <div className="shopping-title-wrapper">
+          <div className="shopping-title">
+            {displayName}
+          </div>
+          <div className="shopping-title-results">
+            Displaying all {result.length} results
+          </div>
+
         </div>
 
         <div className="shopping-page-container"> 
