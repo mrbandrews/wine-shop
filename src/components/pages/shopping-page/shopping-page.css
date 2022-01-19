@@ -2,11 +2,20 @@
     font-size: 0.85em;
 }
 
+.shopping-title-wrapper {
+    margin-left: 32px;
+}
+
 .shopping-title {
     font-size: 1.2em;
     font-weight: bold;
-    margin-left: 32px;
 }
+
+.shopping-title-results {
+    font-size: 1.0em;
+    margin-top: 4px;
+}
+
 .shopping-page-container {
     display: flex;
     margin-top: 15px;
