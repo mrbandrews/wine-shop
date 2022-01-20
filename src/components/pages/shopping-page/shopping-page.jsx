@@ -1,8 +1,10 @@
-import { useContext, useState, useRef } from 'react';
+import { useContext, useState } from 'react';
 import { ProductsContext } from '../../../context/products-context';
 import Layout from "../../layout/layout";
 import ProductCard from './product-card';
 import { WINE_NAMES } from "../../../db/data.js";
+import Modal from './modal/modal';
+import ProductFilter from './product-filter';
 import './shopping-page.css';
 
 /*================= SHOPPING PAGE=====================
@@ -23,9 +25,8 @@ const ShoppingPage = (props) => {
     const { name } = props.match.params;
     const displayName = WINE_NAMES[0][name.replaceAll("-", "")];
 
-    // refs for uncontrolled components (min and max price should not cause a re-render)
-    const refMin = useRef(null);
-    const refMax = useRef(null);
+    // for the filter modal
+    const [show, setShow] = useState(false);
 
     // states and handlers for controlled components
     const [pickupLocal, setPickupLocal] = useState(true);
@@ -39,12 +40,13 @@ const ShoppingPage = (props) => {
     const [p20, setPrice20to30] = useState(false);
     const [p30, setPrice30to50] = useState(false);
     const [p50, setPriceOver50] = useState(false);
-    const [priceSubmit, setPriceSubmit] = useState(false);
+    const [priceMin, setPriceMin] = useState("");
+    const [priceMax, setPriceMax] = useState("");
     const [size375, setSize375] = useState(false);
     const [size750, setSize750] = useState(false);
     const [size1500, setSize1500] = useState(false);
     const [size3000, setSize3000] = useState(false);
-    const [count, setCount] = useState(0);  // force re-render
+    // const [count, setCount] = useState(0);  // force re-render
 
     function clearPriceCheckboxes() {
       setPrice0to10(false);
@@ -55,9 +57,8 @@ const ShoppingPage = (props) => {
     }
 
     function clearRange() {
-      refMin.current.value=null;
-      refMax.current.value=null;
-      setPriceSubmit(false);
+      setPriceMin("");
+      setPriceMax("");
     }
 
     const handlePickupLocal = () => { setPickupLocal(!pickupLocal); setPickupAll(false); }
@@ -71,17 +72,12 @@ const ShoppingPage = (props) => {
     const handlePrice20to30 = () => {setPrice20to30(!p20);  clearRange();}
     const handlePrice30to50 = () => {setPrice30to50(!p30); clearRange();}
     const handlePriceOver50 = () => {setPriceOver50(!p50); clearRange();}
+    const handlePriceMin = (e) => {setPriceMin(e.target.value); clearPriceCheckboxes();}
+    const handlePriceMax = (e) => {setPriceMax(e.target.value); clearPriceCheckboxes();}   
     const handleSize375 = () => setSize375(!size375);
     const handleSize750 = () => setSize750(!size750);
     const handleSize1500 = () => setSize1500(!size1500);
     const handleSize3000 = () => setSize3000(!size3000);
-
-    const handlePriceSubmit = (e) => {
-      setPriceSubmit(true);
-      clearPriceCheckboxes();
-      e.preventDefault();
-      setCount(count + 1);  // re-render
-    }
 
     // states and handlers for bigregion (state/country) and regional filters.   
     //   - if we store these lists as strings rather than arrays, React can easily detect the state change, 
@@ -100,7 +96,7 @@ const ShoppingPage = (props) => {
       let newValue = modifyFilterString(bigregionActiveFilters, e.target);
       setBigregionActiveFilters(newValue);
 
-      // when we clear a bigregion filter, it probably makes sense to clear all of the subregion filters.
+      // when clearing a bigregion filter, it probably makes sense to clear all of the subregion filters.
       if (!e.target.checked) 
         setRegionActiveFilters("");
     }
@@ -110,7 +106,26 @@ const ShoppingPage = (props) => {
       setRegionActiveFilters(newValue);
     }
 
-    // for now, hard-code the user's zip code
+    /* bundle the values for passing to the filter component */
+    const values = {  pickupLocal, pickupAll, deliver, shipTo, 
+      inStoreOnly, outOfStock,
+      p0, p10, p20, p30, p50,
+      priceMin, priceMax,
+      size375, size750, size1500, size3000,
+      regionActiveFilters, bigregionActiveFilters,
+    }
+    
+    /* bundle the handlers */
+    const handlers = {  handlePickupLocal, handlePickupAll, handleDeliver, handleShipTo, 
+      handleInStoreOnly, handleOutOfStock,
+      handlePrice0to10, handlePrice10to20, handlePrice20to30, handlePrice30to50, handlePriceOver50,
+      handlePriceMin, handlePriceMax,
+      handleSize375, handleSize750, handleSize1500, handleSize3000,
+      handleRegionActiveFilters, handleBigregionActiveFilters,
+    }
+
+
+    // for now, hard-code the user's state
     const userState = 'AZ';
 
     // ========= category filter (varietal) =========
@@ -133,8 +148,9 @@ const ShoppingPage = (props) => {
       if (prod.price >= 50 && p50) return true;
       return false;
     }
-    
-    if (!priceSubmit) {
+
+    // if the custom price filter is not being used, use the price checkboxes
+    if (priceMin === "" && priceMax === "") {
       const noneSelected = !p0 && !p10 && !p20 && !p30 && !p50;
       const allSelected = p0 && p10 && p20 && p30 && p50;
       const someSelected = !noneSelected && !allSelected;
@@ -142,10 +158,8 @@ const ShoppingPage = (props) => {
       if (someSelected)
         result = result.filter(byPrice);
     }
-
-    // ========== custom price filter ==========================
-    if (priceSubmit) {
-      const [min, max] = [Number(refMin.current.value), Number(refMax.current.value)]; 
+    else {
+      const [min, max] = [Number(priceMin), Number(priceMax)]; 
       if (min < max) {
         // console.log("before filter: result count", result.length);
         result = result.filter(p => (p.price >= min && p.price <= max));
@@ -176,7 +190,6 @@ const ShoppingPage = (props) => {
 
     // ============= apply regional filters ========================
     if (regionActiveFilters.length > 0) {
-      //console.log("region active filters: ", regionActiveFilters)
       result = result.filter(prod => regionActiveFilters.includes(prod.region));
     }
 
@@ -206,55 +219,14 @@ const ShoppingPage = (props) => {
                                                 />));
 
 
-                                                
-    // ============ ***** DISPLAY LOGIC ****** ===========================
-    
-    // ========= use broad result to display region filters & counts ====================
+    // this is merely for the purpose of DRY, since we use this component twice
+    const filterToDisplay = <ProductFilter  values={values} 
+                                            handlers = {handlers}
+                                            numResults = {result.length}
+                                            broadResult={broadResult}/>
 
 
-    // helper function
-    function generateCheckboxes(attribute) {
-      let array = [];
-      for (const elem of broadResult) {
-        const item = array.find(x => x.name === elem[attribute]);
-        if (!item)  
-          array.push({name: elem[attribute], count: 1});
-        else 
-          item.count++;
-      }
-      return array;
-    }
-  
-    // "checkboxes" is an array of objects of form {name: "bigregion", count: X}
-    let checkboxes = generateCheckboxes("bigregion");
-    const bigregionsToDisplay = [];  // array of JSX elements
-    for (const item of checkboxes) {
-      bigregionsToDisplay.push(<CheckboxWithCount  
-                                    label={item.name} 
-                                    name={item.name} 
-                                    value={bigregionActiveFilters.includes(item.name)} 
-                                    onChange={handleBigregionActiveFilters}
-                                    count={item.count} 
-                                    key={item.name} />);
-    }
-
-    // filter products by bigregion (eg, California) to decide which regions (eg, Napa, Sonoma) to display
-    if (bigregionActiveFilters.length > 0)
-      broadResult = broadResult.filter(prod => bigregionActiveFilters.includes(prod.bigregion));
-    
-    checkboxes = generateCheckboxes("region");
-    const regionsToDisplay = [];
-    for (const item of checkboxes) {
-        regionsToDisplay.push(<CheckboxWithCount  
-                                  label={item.name} 
-                                  name={item.name}
-                                  value={regionActiveFilters.includes(item.name)} 
-                                  onChange={handleRegionActiveFilters}
-                                  count={item.count} 
-                                  key={item.name} />);
-      }
-  
-
+    const modalClose = "Show " + result.length + " results";
 
     return (
       <Layout>
@@ -263,77 +235,29 @@ const ShoppingPage = (props) => {
           <div className="shopping-title">
             {displayName}
           </div>
-          <div className="shopping-title-results">
+          <div className="num-results">
             Displaying all {result.length} results
           </div>
-
+          <div className="filter-btn-wrapper">
+            <button className='filter-btn' onClick={() => setShow(true)}>
+              Filters
+            </button>
+          </div>
+          <Modal  title="Filters"
+                  closeButtonText= {modalClose}
+                  onClose={() => setShow(false)} 
+                  show={show}>
+            {filterToDisplay}
+          </Modal>
         </div>
 
         <div className="shopping-page-container"> 
           <nav className="filter-box">
-           <div className="filter-section top2_filters">
-
-              <h3 className="filter-title">Shopping Method</h3>
-              <div>
-                <Checkbox label="Pickup at: (Local Store)" value={pickupLocal} onChange={handlePickupLocal} />
-                <Checkbox label="Pickup at: (All Stores)" value={pickupAll} onChange={handlePickupAll} />
-                <Checkbox label="Deliver to: (Zip)" value={deliver} onChange={handleDeliver} />
-                <Checkbox label="Ship to: (State)" value={shipTo} onChange={handleShipTo} />
-              </div>
-
-              <h3 className="filter-title">Product Availability</h3>
-              <div>
-                <Checkbox label="Include In-Store Purchases" value={inStoreOnly} onChange={handleInStoreOnly} />
-                <Checkbox label="Include Out of Stock Items" value={outOfStock} onChange={handleOutOfStock} />              
-              </div>
-           </div>  {/* top 2 filters */}
-
-           <div className="filter-section">
-             <h3 className="filter-title">Price Range</h3>
-             <div className="price-range-wrapper">
-              <form className="price-range-form" onSubmit={handlePriceSubmit}>
-                    <input className="price-input" ref={refMin}></input>
-                    <span className="price-input-to">to</span>
-                    <input className="price-input" ref={refMax}></input>
-                    <button className="price-button" type='submit'>Go</button>
-              </form>
-            </div>
-
-            <div>
-              <Checkbox label="Up to $10" value={p0} onChange={handlePrice0to10} />
-              <Checkbox label="$10 to $20" value={p10} onChange={handlePrice10to20} />
-              <Checkbox label="$20 to $30" value={p20} onChange={handlePrice20to30} />
-              <Checkbox label="$30 to $50" value={p30} onChange={handlePrice30to50} />
-              <Checkbox label="Over $50" value={p50} onChange={handlePriceOver50} />
-            </div>
-            
-            <details open>
-              <summary>
-                Country / State
-              </summary>
-                {bigregionsToDisplay}
-            </details>
-
-            <details open>
-              <summary>
-                Regions
-              </summary>
-                {regionsToDisplay}
-            </details>
-
-            <details open>
-              <summary>
-                Size
-              </summary>
-              <Checkbox label="Standard 750 ml" value={size750} onChange={handleSize750} />
-              <Checkbox label="Half Bottle 375 ml" value={size375} onChange={handleSize375} />
-              <Checkbox label="Magnum 1.5 L" value={size1500} onChange={handleSize1500} />
-              <Checkbox label="Large Format 3+ L" value={size3000} onChange={handleSize3000} />
-            </details>
-
-         </div>
-        </nav>
-
+          <ProductFilter  values={values} 
+                                            handlers = {handlers}
+                                            numResults = {-1}
+                                            broadResult={broadResult}/>
+                                                   </nav>
 
           <div className="product-grid">
             { (result.length === 0)? "NO PRODUCTS": productsToDisplay}
@@ -343,28 +267,5 @@ const ShoppingPage = (props) => {
       </Layout>
     );
 }
-
-const Checkbox = ({ label, value, onChange }) => {
-  return (
-    <div>
-    <label className="lbl">
-      <input type="checkbox" checked={value} onChange={onChange} />
-      {label}
-    </label>
-    </div>
-  );
-};
-
-const CheckboxWithCount = ({ label, value, name, onChange, count }) => {
-  return (
-    <div>
-    <label className="lbl">
-      <input type="checkbox" checked={value} onChange={onChange} name={name} />
-      {label} ({count})
-    </label>
-    </div>
-  );
-};
-
 
 export default ShoppingPage;
