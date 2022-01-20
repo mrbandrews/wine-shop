@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/wine-shop/static/css/main.288d4f77.chunk.css",
-    "main.js": "/wine-shop/static/js/main.a89859aa.chunk.js",
-    "main.js.map": "/wine-shop/static/js/main.a89859aa.chunk.js.map",
+    "main.css": "/wine-shop/static/css/main.87441e1d.chunk.css",
+    "main.js": "/wine-shop/static/js/main.77bc0764.chunk.js",
+    "main.js.map": "/wine-shop/static/js/main.77bc0764.chunk.js.map",
     "runtime-main.js": "/wine-shop/static/js/runtime-main.f633f3bd.js",
     "runtime-main.js.map": "/wine-shop/static/js/runtime-main.f633f3bd.js.map",
-    "static/js/2.8c52e47b.chunk.js": "/wine-shop/static/js/2.8c52e47b.chunk.js",
-    "static/js/2.8c52e47b.chunk.js.map": "/wine-shop/static/js/2.8c52e47b.chunk.js.map",
+    "static/js/2.2f72f121.chunk.js": "/wine-shop/static/js/2.2f72f121.chunk.js",
+    "static/js/2.2f72f121.chunk.js.map": "/wine-shop/static/js/2.2f72f121.chunk.js.map",
     "index.html": "/wine-shop/index.html",
-    "static/css/main.288d4f77.chunk.css.map": "/wine-shop/static/css/main.288d4f77.chunk.css.map",
-    "static/js/2.8c52e47b.chunk.js.LICENSE.txt": "/wine-shop/static/js/2.8c52e47b.chunk.js.LICENSE.txt",
+    "static/css/main.87441e1d.chunk.css.map": "/wine-shop/static/css/main.87441e1d.chunk.css.map",
+    "static/js/2.2f72f121.chunk.js.LICENSE.txt": "/wine-shop/static/js/2.2f72f121.chunk.js.LICENSE.txt",
     "static/media/home-page.css": "/wine-shop/static/media/image3-3.17865cd7.jpg",
     "static/media/bogle-merlot.d37b4356.webp": "/wine-shop/static/media/bogle-merlot.d37b4356.webp",
     "static/media/california-pinot-noir.1fb8971f.webp": "/wine-shop/static/media/california-pinot-noir.1fb8971f.webp",
@@ -23,8 +23,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.f633f3bd.js",
-    "static/js/2.8c52e47b.chunk.js",
-    "static/css/main.288d4f77.chunk.css",
-    "static/js/main.a89859aa.chunk.js"
+    "static/js/2.2f72f121.chunk.js",
+    "static/css/main.87441e1d.chunk.css",
+    "static/js/main.77bc0764.chunk.js"
   ]
 }
