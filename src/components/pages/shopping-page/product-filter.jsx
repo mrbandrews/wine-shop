@@ -70,22 +70,29 @@ const ProductFilter = ({values, handlers, broadResult}) => {
     </div>  {/* top 2 filters */}
 
     <div className="filter-section">
-      <h3 className="filter-title">Price Range</h3>
-      <div className="price-range-wrapper">
-        <form className="price-range-form">
-              <input className="price-input" value={values.priceMin} onChange={handlers.handlePriceMin}></input>
-              <span className="price-input-to">to</span>
-              <input className="price-input" value={values.priceMax} onChange={handlers.handlePriceMax}></input>
-        </form>
-      </div>
 
-      <div>
-        <Checkbox label="Up to $10" value={values.p0} onChange={handlers.handlePrice0to10} />
-        <Checkbox label="$10 to $20" value={values.p10} onChange={handlers.handlePrice10to20} />
-        <Checkbox label="$20 to $30" value={values.p20} onChange={handlers.handlePrice20to30} />
-        <Checkbox label="$30 to $50" value={values.p30} onChange={handlers.handlePrice30to50} />
-        <Checkbox label="Over $50" value={values.p50} onChange={handlers.handlePriceOver50} />
-      </div>
+
+      <details>
+        <summary>
+          Price Range
+        </summary>
+
+        <div className="price-range-wrapper">
+          <form className="price-range-form">
+                <input className="price-input" value={values.priceMin} onChange={handlers.handlePriceMin}></input>
+                <span className="price-input-to">to</span>
+                <input className="price-input" value={values.priceMax} onChange={handlers.handlePriceMax}></input>
+          </form>
+        </div>
+
+        <div>
+          <Checkbox label="Up to $10" value={values.p0} onChange={handlers.handlePrice0to10} />
+          <Checkbox label="$10 to $20" value={values.p10} onChange={handlers.handlePrice10to20} />
+          <Checkbox label="$20 to $30" value={values.p20} onChange={handlers.handlePrice20to30} />
+          <Checkbox label="$30 to $50" value={values.p30} onChange={handlers.handlePrice30to50} />
+          <Checkbox label="Over $50" value={values.p50} onChange={handlers.handlePriceOver50} />
+        </div>
+      </details>
 
       <details>
         <summary>

@@ -30,7 +30,7 @@
     border: 1px solid rgb(180, 186, 193);
     color: var(--green-btn);  
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 0.9em;
     font-weight: bold;
     height: 34px;
     margin: 16px 0;
