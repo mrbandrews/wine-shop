@@ -14,9 +14,11 @@ const Modal = props => {
             {props.title}
           </h4>
         </div>
-        <button onClick={props.onClose} className="modal-btn">
-            {props.closeButtonText}
-        </button>
+        <div className="modal-btn-container">
+          <button onClick={props.onClose} className="modal-btn">
+              {props.closeButtonText}
+          </button>
+        </div>
         <div className="modal-body">
           {props.children}
         </div>
