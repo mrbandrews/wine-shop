@@ -11,10 +11,32 @@
     font-weight: bold;
 }
 
-.shopping-title-results {
+.num-results {
     font-size: 1.0em;
     margin-top: 4px;
 }
+
+.num-results-modal {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+
+.filter-btn {
+    --green-btn:  rgb(0, 127, 115);
+    background-color: white;
+    border-radius: 3px;  
+    border: 1px solid rgb(180, 186, 193);
+    color: var(--green-btn);  
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+    height: 34px;
+    margin: 16px 0;
+    width: 80%;
+  }
+  
 
 .shopping-page-container {
     display: flex;
@@ -23,25 +45,40 @@
     margin: 16px;
 }
 
+
+/*====== Filter Stuff ====================== */
+/*  
+ * Screen size < 768:  a button that uses a modal to select the shopping filters.
+ * Screen size > 768:  a filter sidebar
+ *
+ *=========================================== */
+
 .filter-box {
-    width: 248px;
-    flex-grow: 0;
-    flex-shrink: 0;
-}
-
-@media screen and (min-width: 1024px ) {
-  .filter-box {
-    width: 312px;
-  }
-}
-
-@media screen and (max-width: 767px ) {
-  .filter-box {
     display: none;
-  }
 }
-  
 
+@media screen and (min-width: 768px ) {
+
+    .filter-btn-wrapper {
+        display: none;
+    }
+
+    .filter-box {
+      display: block;
+      width: 248px;
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+  }
+  
+@media screen and (min-width: 1024px ) {
+
+    .filter-box {
+        width: 312px;
+    }
+}
+
+  
 .filter-section {
     padding-left: 15px;
 }
@@ -49,7 +86,6 @@
 .filter-title {
     margin-bottom: 10px;
 }
-
 
 .top2_filters {
     background-color: whitesmoke;
@@ -95,6 +131,8 @@ summary {
     font-weight: bold;
     font-size: 1.2rem;
 }
+
+/*====== Product Grid ======*/
 
 .product-grid {
     display: grid;

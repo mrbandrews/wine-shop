@@ -1,0 +1,49 @@
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* this makes the modal scrollable if it exceeds the screen height */
+  height: auto;
+  bottom: 0;
+  overflow: auto;
+  max-height: 100vh;
+}
+
+.modal-content {
+  width: 500px;
+  background-color: #fff;
+}
+
+
+.modal-header,
+.modal-footer {
+  padding: 10px;
+}
+
+.modal-title {
+  margin: 0;
+}
+
+.modal-body {
+  padding: 10px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-btn {
+  display: block;
+  margin: 0 auto;
+  width: 60%;
+  height: 2.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  background-color: black;
+  color: white;
+}
