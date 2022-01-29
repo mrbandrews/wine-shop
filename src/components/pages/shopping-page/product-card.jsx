@@ -39,27 +39,32 @@ const ProductCard = (props) => {
   return (
     <div className='product-card'>
 
-      {/* <div className='product-image' onClick={() => history.push(`/product/${product.id}`)}>
-        <img src={product.imageUrl}  alt='product' />         
-      </div> */}
-
-      <div className='product-image' onClick={() => history.push(`/product/${product.id}`)}>
+      <div className='card-image-wrapper' onClick={() => history.push(`/product/${product.id}`)}>
         <img src={bottleImage}  alt='product' />         
       </div>
 
-      <div className="product-info">
-        <div className="product-name">{product.title}</div>
-        <div className="product-size">{product.size}</div>
-        <div className="product-price">$ {product.price}</div>
-        <div className="product-pickup">Pick-up: <span className="green">{pickupDisplay}</span></div>
-        <div className="product-delivery">Local Delivery: <span className="green">{deliverDisplay}</span></div>
-        <div className="product-shipping">Shipping: <span className="green">{shipDisplay}</span></div>
+      <div className="card-info-wrapper">
 
-        { !itemInCart && <button className='add-cart-button' onClick={() => addProduct(product)}>Add to Cart</button> }
-        {  itemInCart && <button className='add-cart-button' onClick={()=> increase(product)}>Add More</button> }
+        <div className="card-title-size-wrapper">
+          <div className="product-title">{product.title}</div>
+          <div className="product-size">{product.size}</div>
+          <div className="product-description">{product.description}</div>
+        </div>
+
+        <div className="card-pd-cart-wrapper">
+          <div className="product-price">$ {product.price}</div>
+          <div className="product-pickup">Pick-up: <span className="green">{pickupDisplay}</span></div>
+          <div className="product-delivery">Delivery: <span className="green">{deliverDisplay}</span></div>
+          <div className="product-shipping">Shipping: <span className="green">{shipDisplay}</span></div>
+
+          { !itemInCart && <button className='add-cart-button' onClick={() => addProduct(product)}>Add to Cart</button> }
+          {  itemInCart && <button className='add-cart-button' onClick={()=> increase(product)}>Add More</button> }
+        </div>
       </div>
+
     </div>
   );
 }
 
 export default withRouter(ProductCard);
+

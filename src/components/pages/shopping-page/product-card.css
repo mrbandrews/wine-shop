@@ -1,41 +1,127 @@
+/* mobile-first */
 .product-card {
-  padding: 2%;
-  margin-left: 1rem 0;
-  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  padding: 8px;
+  border-top: 1px solid lightgray;
 }
 
-.product-image img {
-  max-width: 100%;
+.card-image-wrapper img {
+  width: 130px;
+  max-height: 70%;
   cursor: pointer;
 }
 
-.product-info {
-  text-align: left;
-  margin-top: 20px;
+.card-info-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
-.product-name {
+
+.card-title-size-wrapper {
+  text-align: left;
+}
+
+.product-title {
   font-size: 1.0em;
   font-weight: bold;
 }
 
 .product-size, .product-rating, .product-pickup, .product-delivery {
   font-size: 0.8em;
+  margin: 4px 0px;
 }
 
-.product-shipping {
-  font-size: 0.8em;
-  margin-bottom: 10px;
+.product-description {
+  display: none;
 }
-.green {
-  color: green;
+
+.card-pd-cart-wrapper {
+  min-width: 160px;
 }
 
 .product-price {
   margin-top: 10px;
-  margin-bottom: 20px; 
+  margin-bottom: 10px;
   font-size: 1.2em;
   font-weight: bold;
 }
+
+.product-shipping {
+  display: none;
+}
+
+.green {
+  color: green;
+}
+
+/* over 480px */
+
+@media screen and (min-width: 480px ) {
+
+  .card-info-wrapper {
+    flex-direction: row;
+  }
+
+  .card-title-size-wrapper {
+    padding-right: 16px;
+  }
+
+  .product-description {
+    display: block;
+    font-size: 0.7em;
+  }
+  
+  .card-pd-cart-wrapper {
+    margin-left: auto;
+  }
+}
+
+/* over 768 px */
+@media screen and (min-width: 768px ) {
+
+  .product-card {
+    flex-direction: column;
+    height: 424px;
+    padding: 8px;
+    margin-left: 1rem 0;
+    border: 1px solid lightgray;
+  }
+
+  .card-image-wrapper img {
+    width: auto;
+    max-width: 90%;
+    max-height: none;
+    padding-top: 20px;
+  }
+  
+  .card-info-wrapper {
+    margin-top: auto; /* push info to bottom for alignment */
+    flex-direction: column;
+  }
+
+  .card-title-size-wrapper {
+    padding-right: 0;
+  }
+
+  .product-description {
+    display: none;
+  }
+
+  .card-pd-cart-wrapper {
+    min-width: 0;
+    margin-left: 0;
+  }
+  
+}
+
+@media screen and (min-width: 1024px ) {
+.product-card {
+    height: 484px;
+    padding: 16px;
+  }
+}
+
 
 .add-cart-button {
   width: 100%;
@@ -45,6 +131,7 @@
   font-size: 0.8rem;
   font-weight: bold;
   cursor: pointer;
+  margin-top: 4px;
 }
 
 .add-cart-button:hover {
