@@ -55,8 +55,8 @@ const ShoppingPage = (props) => {
     }
 
     function clearRange() {
-      refMin.current.value=0;
-      refMax.current.value=0;
+      refMin.current.value=null;
+      refMax.current.value=null;
       setPriceSubmit(false);
     }
 
