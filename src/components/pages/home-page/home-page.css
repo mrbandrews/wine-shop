@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 3px solid red;
 }
 
 .homepage-grid {
@@ -19,7 +18,6 @@
 
     .homepage-grid {
         display: grid;
-        border: 3px solid lightgrey;
         gap: 10px;
         margin-bottom: 10px;
     }
