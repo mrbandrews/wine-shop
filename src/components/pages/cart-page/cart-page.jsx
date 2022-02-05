@@ -41,14 +41,14 @@ const CartPage = () => {
           </div>
 
           <div className='cp-total-container'>
-            <div className="subtotalLabel left-col">Subtotal: </div>
-            <div className="subtotal right-col">${subtotal.toFixed(2)} </div>
-            <div className="left-col">Service Fee: </div>
-            <div className="right-col">${servicefee.toFixed(2)} </div>
-            <div className="salestaxLabel left-col">Estimated Tax: </div>
-            <div className="salestax right-col">${tax.toFixed(2)} </div>
-            <div className="totalLabel left-col">Estimated Total: </div>
-            <div className="total right-col">${total.toFixed(2)} </div>
+            <div className="subtotal-lbl cp-left-col">Subtotal: </div>
+            <div className="subtotal cp-right-col">${subtotal.toFixed(2)} </div>
+            <div className="cp-left-col">Service Fee: </div>
+            <div className="cp-right-col">${servicefee.toFixed(2)} </div>
+            <div className="salestax-lbl cp-left-col">Estimated Tax: </div>
+            <div className="salestax cp-right-col">${tax.toFixed(2)} </div>
+            <div className="total-lbl cp-left-col">Estimated Total: </div>
+            <div className="total cp-right-col">${total.toFixed(2)} </div>
           </div>
 
           <div className='checkout-container'>
@@ -70,26 +70,27 @@ const CartItem = (props) => {
 
   return (
     <div className='ci-container'>
-      <div className='ci-image-name-container'>
-        <div className='ci-image-container'>
-          <img className='ci-image' src={bottleImage} alt='product' />
-        </div>
+      <div className='ci-left-container'>
+        <img className='ci-image' src={bottleImage} alt='product' />
+      </div>
+
+      <div className="ci-middle-container">
         <div className="ci-name-size-container">
           <div className='ci-name'>{title}</div>
           <div className='ci-size'>{size}</div>
         </div>
+        <fieldset className='ci-qty-fieldset'>
+          <legend className='ci-qty-legend'>Quantity</legend>
+          <div className='ci-qty-container'>
+            <button className='ci-btn decrease' onClick={() => decrease(product)}>-</button>
+            <div className='ci-qty-text'>{quantity}</div>
+            <button className='ci-btn increase' onClick={() => increase(product)}>+</button>
+          </div>
+        </fieldset>
       </div>
 
-      <fieldset className='ci-qty-fieldset'>
-        <legend className='ci-qty-legend'>Quantity</legend>
-        <div className='ci-qty-container'>
-          <button className='ci-btn decrease' onClick={() => decrease(product)}>-</button>
-          <div className='ci-qty-text'>{quantity}</div>
-          <button className='ci-btn increase' onClick={() => increase(product)}>+</button>
-        </div>
-      </fieldset>
 
-      <div className='ci-price-container'>
+      <div className='ci-right-container'>
         <div className='ci-total'>${(price*quantity).toFixed(2)}</div>
         <div className='ci-price'>${price.toFixed(2)} each</div>
       </div>

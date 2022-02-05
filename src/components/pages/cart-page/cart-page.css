@@ -1,6 +1,7 @@
+/* cp stands for cart-page */
 .cp-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   margin-top: 20px;
 }
 
@@ -8,46 +9,37 @@
   text-align: left;
   font-size: 1.2em;
   font-weight: bold;
-  margin-right: 10px;
-  margin-bottom: 20px;
+  margin: 0px 10px 20px 10px; 
 }
 
-/* left side */
 .cp-your-cart {
-  flex-grow: 2;
-  margin: 0 30px;
+  padding: 0px;
 }
 
-/* right side */
 .cp-order-summary {
   background-color: whitesmoke;
-  min-width: 300px;
-  max-width: 350px;
   padding: 20px;
-  border-radius: 5px;
-  margin-right: 50px;
 }
 
-/* 4 rows, 2 columns */
 .cp-total-container {
   display: grid;
   grid-template-columns: 4fr 1fr;
   row-gap: 5px;
 }
 
-.left-col {
+.cp-left-col {
   text-align: left;
   font-weight: bold;
   font-size: 0.9rem;
   margin-top: 8px;
 }
 
-.right-col {
+.cp-right-col {
   text-align: right;
   font-size: 0.9rem;
 }
 
-.totalLabel {
+.total-lbl {
   font-size: 1.1rem;
 }
 
@@ -80,6 +72,7 @@
   margin-top: 16px;
 }
 
+/* line items in the cart (ci => cart-item) */
 .ci-container {
   display: flex;
   justify-content: space-between;
@@ -87,17 +80,28 @@
   border-top: 1px solid #ccc;
 }
 
-.ci-image-name-container {
-  display: flex;
+.ci-left-container {
+  flex-basis: 15%;
 }
 
-.ci-image-container {
-  max-width: 60px;
+.ci-middle-container {
+  flex-basis: 65%;
+  display: block;
+}
+
+.ci-right-container {
+  flex-basis: 20%;
+  border: none;
+  margin-left: 10px;
 }
 
 .ci-image {
   height: 100%;
   width: 100%;
+}
+
+.ci-name-size-container {
+  margin-bottom: 10px;
 }
 
 .ci-name {
@@ -111,7 +115,9 @@
 
 .ci-qty-fieldset {
   width: 80px;
-  height: 30px;
+  height: 38px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   border: 1px solid lightgray;
 }
 
@@ -130,15 +136,11 @@
     font-size: 1.2em;
     background-color: white;
 }
+
 .ci-qty-text {
   font-size: 0.8em;
   font-weight: bold;
   padding-top: 3px;
-}
-
-.ci-price-container {
-  border: none;
-  margin-left: 10px;
 }
 
 .ci-total {
@@ -148,6 +150,52 @@
 }
 .ci-price {
   font-size: 0.7em;
+  text-align: right;
 }
 
+
+@media screen and (min-width: 768px ) {
+
+  .cp-container {
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  /* left side */
+  .cp-your-cart {
+    flex-grow: 2;
+    margin: 0 30px;
+  }
+  
+  /* right side */
+  .cp-order-summary {
+    min-width: 300px;
+    max-width: 350px;
+    border-radius: 5px;
+    margin-right: 50px;
+  }
+
+  .cp-section-title {
+    margin: 0px 10px 20px 0px; 
+  }
+
+}
+
+
+
+@media screen and (min-width: 1024px ) {
+
+  /* this puts the quantity fieldset below the name */
+  .ci-middle-container {
+    display: flex;
+  }
+
+  /* push to the right edge of its container */
+  .ci-qty-fieldset {
+    margin-left: auto;
+    margin-right: 5%;
+  }
+
+}
 
