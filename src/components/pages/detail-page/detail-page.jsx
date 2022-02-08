@@ -10,7 +10,7 @@ import { getBottleImage } from '../../../images';
 /*********  PRODUCT DETAIL PAGE  *******************************************
  * 
  * This page shows a bottle of wine and invites the user to add it to the cart. 
- * Designed to be mobile-first and responsive. 
+ * 
  ***************************************************************************/
 const DetailPage = (props) => {
 
@@ -20,22 +20,25 @@ const DetailPage = (props) => {
 
     const [product, setProduct] = useState(null);
 
-    // check for product id
+    // The code below uses the useEffect hook to set the component's product, as follows:
+    // The initial render attempt will fail to find the product in the component's 
+    // state. It returns null, which triggers useEffect, which finds the product and 
+    // sets the state;  which triggers a re-render. This flow is necessary because the 
+    // call to setState is asynchronous. 
     useEffect(() => {
-        const prod = products.find(item => Number(item.id) === Number(id));
-        if (!prod)
-            return props.history.push('/shop');
-        setProduct(prod);
+      const prod = products.find(item => Number(item.id) === Number(id));
+      if (!prod)
+          return props.history.push('/shop');
+      setProduct(prod);
     }, [products, id, props.history]);
 
-    // if no product, return null; we will soon find the product in useEffect
-    if (!product) { return null; }
+    if (!product)
+      return null;
 
-    //pull a few things off the product
-    const { title, size, price } = product;
-    const itemInCart = cartItems.find(p => p.id === product.id);
 
-    // handle the radio button change
+    // boolean for conditional rendering 
+    const itemIsInCart = cartItems.find(p => p.id === product.id);
+
     function onChangeValue(e) {
       console.log(e.target.value);
     }
@@ -79,14 +82,14 @@ const DetailPage = (props) => {
                 <img src={bottleImage}  alt='wine bottle' />         
               </div>
 
-              <TitleSizePrice className="dp-card-title-size-price" title={title} size={size} price={price} />
+              <TitleSizePrice className="dp-card-title-size-price" title={product.title} size={product.size} price={product.price} />
           </article>
 
-          <aside className="dp-details-container">  {/* product details */}
+          <aside className="dp-details-container">
 
             <div className="dp-details-container-title-size">
-              <div className="dp-title">{title}</div>
-              <div className="dp-size">{size}</div>
+              <div className="dp-title">{product.title}</div>
+              <div className="dp-size">{product.size}</div>
             </div>
             <details open>
               <summary className="dp-details-summary">Details</summary>
@@ -117,19 +120,19 @@ const DetailPage = (props) => {
           </aside>
 
 
-          <aside className="dp-ship-container"> {/* shipping info and add to cart */}
+          <aside className="dp-ship-container">
 
             <div onChange={onChangeValue}>
 
-                { /* whether to display this depends on screen size, so we give control to CSS through the class */}
+                { /* whether to display this depends on screen size */}
                 <div className = "dp-ship-container-title-size-price"> 
-                  <div className="dp-title">{title}</div>
-                  <div className="dp-size">{size}</div>
-                  <div className="dp-price">$ {price}</div>
+                  <div className="dp-title">{product.title}</div>
+                  <div className="dp-size">{product.size}</div>
+                  <div className="dp-price">$ {product.price}</div>
                 </div>
 
                 <div className = "dp-ship-container-price-only"> 
-                  <div className="dp-price">$ {price}</div>
+                  <div className="dp-price">$ {product.price}</div>
                 </div>
 
               <RadioButtonArea props={radioPickup} />
@@ -139,23 +142,16 @@ const DetailPage = (props) => {
             </div>
 
             {/* cart button in the ship info area  */}
-            { !itemInCart && <button className='dp-cart-btn dp-cart-btn-ship-container' onClick={()=> addProduct(product)}>Add to Cart</button> }
-            {  itemInCart && <button className='dp-cart-btn dp-cart-btn-ship-container' onClick={()=> increase(product)}>Add More</button> }
+            { !itemIsInCart && <button className='dp-cart-btn dp-cart-btn-ship-container' onClick={()=> addProduct(product)}>Add to Cart</button> }
+            {  itemIsInCart && <button className='dp-cart-btn dp-cart-btn-ship-container' onClick={()=> increase(product)}>Add More</button> }
 
           </aside>
 
              {/* must put cart button in the main section for a fixed button */}
-            { !itemInCart && <button className='dp-cart-btn dp-cart-btn-fixed' onClick={() => addProduct(product)}>Add to Cart</button> }
-            {  itemInCart && <button className='dp-cart-btn dp-cart-btn-fixed' onClick={()=> increase(product)}>Add More</button> }
+            { !itemIsInCart && <button className='dp-cart-btn dp-cart-btn-fixed' onClick={() => addProduct(product)}>Add to Cart</button> }
+            {  itemIsInCart && <button className='dp-cart-btn dp-cart-btn-fixed' onClick={()=> increase(product)}>Add More</button> }
 
         </main>
-
-        {/* <nav className="dp-nav">
-          <a href="/">Red Wine</a>
-          <a href="/">White Wine</a>
-          <a href="/spirits">Spirits</a>
-          <a href="/beer">Beer</a>
-        </nav> */}
 
       </Layout> 
 
