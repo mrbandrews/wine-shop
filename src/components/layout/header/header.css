@@ -64,7 +64,11 @@
     padding: 2px 2px 2px 40px;
     font-size: 0.95rem;
  }
-  
+
+.search-box:focus {
+   outline: none;
+ }
+ 
 .search-button {
     background-color: rgb(9, 107, 94);
     color: white;
